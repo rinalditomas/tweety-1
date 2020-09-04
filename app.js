@@ -11,8 +11,6 @@ nunjucks.configure('views'); // apunta a nunjucks al directorio correcto para lo
 
 app.use(morgan('tiny'))
 
-/****** MIDDLEWARES ******/
-
 let tweetsDeEjemplo = [
     { id: 1, name: "juan", content: "este es un tweeettt de juan" },
     { id: 2, name: "carlos", content: "este es un tweeettt de carlos" },
