@@ -9,28 +9,7 @@ app.set('view engine', 'html'); // hace que res.render funcione con archivos htm
 app.engine('html', nunjucks.render); // cuando le den archivos html a res.render, va a usar nunjucks
 nunjucks.configure('views'); // apunta a nunjucks al directorio correcto para los templates
 
-
-/****** MIDDLEWARES ******/
-// Middleware static: serve images, CSS files, and JavaScript files in a directory named public
-app.use(express.static('./public'))
-
-/////***** Logger Middleware *****////
-var fs = require('fs')
-var path = require('path') //The path module provides utilities for working with file and directory paths.
-
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-// createWriteStream: create a write stream (in append mode) into 'access.log'
-// The path.join() method joins all given path segments together using the platform-specific separator as a delimiter, then normalizes the resulting path.
-// __dirname: The directory name of the current module
-// flags: 'a' - Open file for appending. The file is created if it does not exist.
-
-app.use(morgan('combined', { stream: accessLogStream }))
-// Logger Middleware: this middleware will log all request in the Apache combined format to STDOUT
-// - stream : Output stream for writing log lines, defaults to process.stdout.
-// - combined: Standard Apache combined log output.
-// :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
-
-/////***** Logger Middleware *****////
+app.use(morgan('tiny'))
 
 /****** MIDDLEWARES ******/
 
